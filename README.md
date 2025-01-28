@@ -139,3 +139,52 @@ This shows the:
         └── tenor:C4 = G2,C3,C4
             └── bassus:F4 = G2,C3,C4,F4 = 1
 ```
+
+
+## Overview
+|     file_name     |measures|labels|
+|-------------------|-------:|-----:|
+|Goudimel_001_modern|      28|     0|
+|Goudimel_003_modern|      33|     0|
+|Goudimel_021_modern|      19|     0|
+|Goudimel_025_modern|      27|     0|
+|Goudimel_029_modern|      27|     0|
+|Goudimel_032_modern|      35|     0|
+|Goudimel_035_modern|      28|     0|
+|Goudimel_036_modern|      36|     0|
+|Goudimel_042_modern|      27|     0|
+|Goudimel_043_modern|      20|     0|
+|Goudimel_047_modern|      24|     0|
+|Goudimel_049_modern|      34|     0|
+|Goudimel_052_modern|      18|     0|
+|Goudimel_054_modern|      28|     0|
+|Goudimel_056_modern|      31|     0|
+|Goudimel_060_modern|      29|     0|
+|Goudimel_066_modern|      55|     0|
+|Goudimel_068_modern|      36|     0|
+|Goudimel_073_modern|      29|     0|
+|Goudimel_075_modern|      18|     0|
+|Goudimel_079_modern|      35|     0|
+|Goudimel_081_modern|      14|     0|
+|Goudimel_084_modern|      29|     0|
+|Goudimel_089_modern|      31|     0|
+|Goudimel_097_modern|      24|     0|
+|Goudimel_098_modern|      28|     0|
+|Goudimel_099_modern|      17|     0|
+|Goudimel_101_modern|      15|     0|
+|Goudimel_105_modern|      22|     0|
+|Goudimel_108_modern|      29|     0|
+|Goudimel_118_modern|      28|     0|
+|Goudimel_119_modern|      26|     0|
+|Goudimel_122_modern|      35|     0|
+|Goudimel_123_modern|      27|     0|
+|Goudimel_124_modern|      22|     0|
+|Goudimel_127_modern|      20|     0|
+|Goudimel_133_modern|      25|     0|
+|Goudimel_135_modern|      19|     0|
+|Goudimel_138_modern|      32|     0|
+|Goudimel_140_modern|      15|     0|
+|Goudimel_150_modern|      24|     0|
+
+
+*Overview table automatically updated using [ms3](https://ms3.readthedocs.io/).*
