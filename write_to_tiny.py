@@ -11,11 +11,10 @@ These initial scores can be then discarded.
 This module helps with that process by writing from score to tiny notation strings.
 """
 
-__author__ = "Mark Gotham"
-
-
 from __future__ import annotations
-from music21 import converter, note, pitch, stream
+from music21 import pitch, stream
+
+__author__ = "Mark Gotham"
 
 
 def tiny_pitch(p: pitch.Pitch):
