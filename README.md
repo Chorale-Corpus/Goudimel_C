@@ -2,12 +2,12 @@
 
 The Geneva Psalter is a setting of the 150 Psalm texts for 4-part choir.
 This repository provides data about all 150 Psalms
-as well as selection of full-transcriptions for 41 from the "Genevan Psalter" collection.
+as well as a selection of full-transcriptions for 41 from the "Genevan Psalter" collection.
 These 41 were selected to provide the corresponding scores 
 for harmonic analyses originally by Dmitri Tymoczko and provided on the
 [When in Rome meta-corpus of harmonic analysis](https://github.com/MarkGotham/When-in-Rome/tree/master/Corpus/Early_Choral/Goudimel%2C_Claude/Psalmes).
 As the keys and time values differ, this source records the original in music21's `tinyNotation`
-along with the transpositions needed to match DT's analyses.
+along with the transpositions needed to match the analyses.
 Both "ancient" and "modern" versions of the scores (generated from the json)
 are provided here.
 More details follow below.
@@ -36,8 +36,6 @@ parties par Claude Goudimel.
 M.D.LXV
 ```
 
-Yes, the use of upper/lower case is really like that. ;)
-
 Note also that IMSLP provides a
 [comparison of sources using the Genevan Psalter melodies here.]
 (https://imslp.org/wiki/List_of_collections_containing_the_Genevan_Psalter_melodies)
@@ -52,7 +50,7 @@ play from on the same piano and read from the same double page.
 ## Local encodings ... in json
 
 In describing this repo, we begin with the main point of reference
-from which all secondary sources automatically derive: `goudimel.json`.
+from which all secondary sources automatically derive: [`goudimel.json`](./goudimel.json).
 
 This contains the following keys for _all_ 150:
 - `title`: `str`. Original French titles (note the old language and spelling) that sets the file's alphabetical order.
@@ -98,6 +96,49 @@ The original is almost entirely expressed in the json, with the exception of ele
 - transposed to keys match up with the harmonic analyses on [When in Rome](https://github.com/MarkGotham/When-in-Rome/tree/master/Corpus/Early_Choral/Goudimel%2C_Claude/Psalmes)
 
 
+## Metadata, then and now
+
+After the frontispiece and a prefatory note, the source provides two tables of contents.
+This first is alphabetical:
+```
+TABLE DES PSEAVMES
+SELON L'ORDRE DE
+L'Alphabeth
+```
+
+The metadata on this repository
+(at [`goudimel.json`](./goudimel.json))
+is similarly ordered by name as described above.
+
+The second index of the source provides
+'the order in which they are sung in the Church of Geneva' (my translation):
+```
+TABLES POVR TROU-
+VER LES PSEAVMES SELON
+l'ordre qu'on les chante en l'Eglise de Ge-
+neve, tant apres le selon coup de la cloche,
+qu'au commencement & à la fin du sermon
+le Dimanche au matin & soir,&
+ausi le Mecredi jour
+des prieres.
+
+ON CHANTE LES COM-
+mandemens de Dieu (Leue le cœur, ouvre
+l'aureille, Exode 20.) apres le sermo,le iour 
+qu'on celebre la saincte Cene de noftre Sau-
+veur Iesus Christ: laquelle on celebre qua-
+tre fois l'an: Affauoir, A Pafque, A la Pente-
+coste, Au premier Dimanche de Septembre,
+& au plus prochain Dimanche de la Nati-
+vité de notre Seigneur Iesus.
+On chante en l'action de graces
+le cantique de Simeon,
+Or laisses, Crea-
+teur. Luc
+2.
+```
+
+
 ## Scripts
 
 The code here serves to:
@@ -105,7 +146,7 @@ The code here serves to:
 - `write_to_tiny`: extract a tiny notation version from a score.
 - `corpus_conversion`: use musescore to convert between any supported formats
 - `clef_tree`: produce a summary of clefs used and their counts as described below.
-
+- `titles`: script for making sense of the two main numbering systems.
 
 ## Clefs
 
