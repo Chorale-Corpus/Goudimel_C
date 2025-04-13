@@ -7,6 +7,7 @@ Psalm text, names, numbering:
 
 from __future__ import annotations
 
+__author__ = "Mark Gotham"
 
 goudimel_latin_titles_dict = {
     1: "Beatus vir qui non abiit.",
