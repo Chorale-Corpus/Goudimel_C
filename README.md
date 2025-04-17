@@ -15,7 +15,13 @@ More details follow below.
 
 ## External, Original Source, 1564
 
-The source for this transcription is the earliest available on IMSLP:
+Claude Goudimel's contribution (1564) is to add harmonies
+to an existing "Genevan Psalter".
+The melody-only version dates from 1539.
+The text is a "metrical" French version of the psalm texts
+by Clément Marot and Théodore de Bèze (1519-1605).
+
+The source for this transcription of the Goudimel is the earliest available on IMSLP:
 [the 2nd edition, of 1564, here](https://imslp.org/wiki/150_Pseaumes_de_David,_1564_(Goudimel,_Claude))
 This leads to two files for the:
 - [first half here (1-68)](https://s9.imslp.org/files/imglnks/usimg/f/f2/IMSLP498673-PMLP572700-Les_Pseaumes_mis_en_rime_1565_Goudimel_Claude_btv1b525015926_1-68.pdf)
@@ -37,8 +43,7 @@ M.D.LXV
 ```
 
 Note also that IMSLP provides a
-[comparison of sources using the Genevan Psalter melodies here.]
-(https://imslp.org/wiki/List_of_collections_containing_the_Genevan_Psalter_melodies)
+[comparison of sources using the Genevan Psalter melodies here.](https://imslp.org/wiki/List_of_collections_containing_the_Genevan_Psalter_melodies)
 
 This original source is set out in the "Choirbook format" that was common at the time.
 This allows for all four voices to read from the same double page.
@@ -54,14 +59,18 @@ from which all secondary sources automatically derive: [`goudimel.json`](./goudi
 
 This contains the following keys for _all_ 150:
 - `title`: `str`. Original French titles (note the old language and spelling) that sets the file's alphabetical order.
-- `psalm_number`: `int`. A number in the range 1--150.
 - `orig_bass`: `str`. The pitch name with octave (e.g, "C4" - not to be confused with the clefs) of the first note in the original bass part.
-- `orig_key`: The original key signature expressed as a bool: there is either no key signature or one of a single flat.
+- `orig_key`: `bool`. The original key signature expressed as a bool: there is either no key signature or one of a single flat.
 - `clefs`: `list`. The four original clefs, specifying the `sign` and `line` in order (from superius to basses). E.g., ["G2", "C3", "C3", "F4"].
+- `psalm_number`: `int`. A number in the range 1--150.
+- `latin_title`: `str`. A corresponding Latin name for the psalm.
+This is potentially useful for cross-referencing
+(for which see also [`titles.py`](./titles.py) module
+which includes a mapping between the numbering schemes).
 
 Additionally, for the 41 transcribed so far, there is the following:
 - string (text) representations of the original parts in music21's tinyNotation.
-  - The key is given by the part nam-: `superius`, `contra`, `tenor`, `bassus`.
+  - The key is given by the part name: `superius`, `contra`, `tenor`, `bassus`.
   - The values are tiny notation for the music of that part.
   - This covers all relevant data except the following which we also provide on the json:
 - `mod_trans`: `int`. The number of semitones and direction (+/-) for transposing from the original to the modern key choice.
