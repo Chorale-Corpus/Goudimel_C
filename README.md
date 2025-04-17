@@ -148,6 +148,31 @@ teur. Luc
 ```
 
 
+## Text
+
+Each score sets out the music for one strophe of text
+(most psalms consist of many strophes, repeating the music).
+This repo likewise provides one strope of text for each transcribed score.
+Two cases (psalms 1 and 3) have full text as proof of concept for testing the syllabic division across verses.
+
+Line divisions are determined by the text (punctuation break and/or capitalisation)
+and/or a rest in the music.
+
+All spelling and punctuation is preserved from the original,
+except for standard (minimal) adjustments, such as:
+- "u" -> "v" (e.g., as in "couuerts" -> "couverts")
+- "ō" -> "on" or "om" ("cōbien" -> "combien")
+- "ct" -> "t" ("poinct" -> "point")
+- Apparent errors or inconsistencies between versions ("cestui-là" -> "celui-là")
+- Modernised spelling ("Loy" -> "Loi", "Roy" -> "Roi")
+- Abbreviations ("&" -> "et")
+
+Various sources are other versions of the Psalm texts.
+These include WikiSource's provision of:
+- [A more modern French translation (1910)](https://fr.wikisource.org/wiki/Bible_Segond_1910/Livre_des_Psaumes)
+- [The Latin Vulgate](https://la.wikisource.org/wiki/Vulgata_Clementina/Liber_Psalmorum)
+
+
 ## Scripts
 
 The code here serves to:
