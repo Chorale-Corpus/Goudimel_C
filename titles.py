@@ -2,10 +2,21 @@
 Psalm text, names, numbering:
 - Latin names
 - Two numbering systems ("Greek" and "Hebrew").
-    - Gouidmel's numbering follows what is called "Hebrew" here.
+    - Goudimel's numbering follows what is called "Hebrew" here.
+- Shared melodies (WIP)
+- Tests
+
+Author: Mark Gotham
+Licence: MIT
 """
 
 from __future__ import annotations
+
+import itertools
+import pandas as pd
+import os
+import json
+
 
 __author__ = "Mark Gotham"
 
@@ -164,9 +175,6 @@ goudimel_latin_titles_dict = {
 
 
 def add_titles_to_goudimel() -> None:
-    import os
-    import json
-
     metadata_path = os.path.join(".", "goudimel.json")
     with open(metadata_path, "r") as json_file:
         data = json.load(json_file)
@@ -249,7 +257,7 @@ def hebrew_to_greek(num: int) -> int | tuple[int, int]:
         return num - 1
     elif num in (114, 115):  # 2 -> 1
         return  113
-    elif num == 116:
+    elif num == 116:  # 1 -> 2
         return 114, 115
     elif num in range(117, 146 + 1):
         return num - 1
@@ -259,6 +267,139 @@ def hebrew_to_greek(num: int) -> int | tuple[int, int]:
         return num
     else:
         raise ValueError("Unexpected number error")
+
+
+# Tests TODO unitests
+
+def test_monotonic(
+        path_to_data = os.path.join(".", "psalms_texts.tsv"),
+        psalm_not_verse: bool = True,
+        Hebrew_not_Greek: bool = True
+):
+    """
+    Test that the tabular file features only monotonically increasing values for the relevant columns:
+    Psalm and verse numbers for both Hebrew and Greek numbering.
+
+    >>> test_monotonic(psalm_not_verse=True, Hebrew_not_Greek=True)
+
+    >>> test_monotonic(psalm_not_verse=True, Hebrew_not_Greek=False)
+
+    >>> test_monotonic(psalm_not_verse=False, Hebrew_not_Greek=True)
+
+    >>> test_monotonic(psalm_not_verse=False, Hebrew_not_Greek=False)
+
+    """
+
+    if psalm_not_verse:
+        column_name = "Psalm("
+    else:
+        column_name = "Verse("
+
+    if Hebrew_not_Greek:
+        column_name += "Hebrew)"
+    else:
+        column_name += "Greek)"
+
+    data = pd.read_csv(path_to_data, delimiter="\t")
+    nums = data[column_name]
+
+    line = 1
+    current = 0
+
+    if psalm_not_verse:
+        for n in nums:
+            num = int(n)
+            if num not in (current, current + 1):
+                raise ValueError(f"Non-monotonic step at {n} (line {line})")
+            current = num
+            line += 1
+    else:  # verse
+        for n in nums:
+            if n == ".":
+                continue
+            try:
+                num = int(n)
+            except:
+                raise ValueError(f"Cannot convert `{n}` to integer (line {line}).")
+            options = (1, current, current + 1)
+            if num not in options:
+                raise ValueError(f"Non-monotonic step at {n} (line {line}). {num} not in {options}")
+            current = num
+            line += 1
+
+
+def test_numbering():
+    """
+    Test for psalm numbers:
+    - non-duplication
+    - none missing
+
+    >>> test_numbering()
+
+    """
+    metadata_path = os.path.join(".", "goudimel.json")
+    with open(metadata_path, "r") as json_file:
+        data = json.load(json_file)
+        seen = []
+        for item in data:
+            num = item["psalm_number"]
+            if num is None:
+                assert item["title"] in ["Leve le coeur (Commandemens)", "Or laisse, Createur (Siméon)"]  # Known
+            else:
+                if num in seen:
+                    raise ValueError(f"Missing psalm number in {item}")
+                else:
+                    seen.append(num)
+
+        assert len(set(seen)) == 150
+
+
+def test_shared_melodies():
+    """
+    Work in progress test for psalms with shared melodies.
+    Limitated to only:
+    - those transcribed: json entry has a key for "tenor"
+    - single line comparison: only "tenor" tested
+    - exact matches: catches (36, 68), misses (98, 118)
+    - pairs: any 3x and 4x sets would be expressed by their constituent pairs.
+
+    TODO full list:
+    (5, 64)
+    (14, 53)
+    (17, 63, 70)
+    (18, 144)
+    (24, 62, 95, 111)
+    (28, 109)
+    (30, 76, 139)
+    (31, 71)
+    (33, 67)
+    (36, 68)
+    (46, 82)
+    (51, 69)
+    (60, 108)
+    (65, 72)
+    (66, 98, 118)
+    (74, 116)
+    (77, 86)
+    (78, 90)
+    (100, 131, 142)
+    (117, 127)
+
+    >>> matching_pairs = test_shared_melodies()
+    >>> matching_pairs
+    [(36, 68)]
+
+    """
+    metadata_path = os.path.join(".", "goudimel.json")
+    matching_pairs = []
+    with open(metadata_path, "r") as json_file:
+        data = json.load(json_file)
+        for i, j in itertools.combinations(data, 2):
+            if ("tenor" in i) and ("tenor" in j):
+                if i["tenor"] == j["tenor"]:
+                    matching_pairs.append((i["psalm_number"], j["psalm_number"]))
+
+    return matching_pairs
 
 
 if __name__ == '__main__':
