@@ -2,11 +2,11 @@
 
 The Geneva Psalter is a setting of the 150 Psalm texts for 4-part choir.
 This repository provides data about all 150 Psalms
-as well as a selection of full-transcriptions for 41 from the "Genevan Psalter" collection.
+as well as a selection of full-transcriptions for 41 cases from the collection.
 These 41 were selected to provide the corresponding scores 
-for harmonic analyses originally by Dmitri Tymoczko and provided on the
-[When in Rome meta-corpus of harmonic analysis](https://github.com/MarkGotham/When-in-Rome/tree/master/Corpus/Early_Choral/Goudimel%2C_Claude/Psalmes).
-As the keys and time values differ, this source records the original in music21's `tinyNotation`
+for harmonic analyses originally by Dmitri Tymoczko and provided on
+Gotham et al.'s [When in Rome meta-corpus of harmonic analysis](https://github.com/MarkGotham/When-in-Rome/tree/master/Corpus/Early_Choral/Goudimel%2C_Claude/Psalmes).
+As the keys and time values differ, this source records the original source in music21's `tinyNotation`
 along with the transpositions needed to match the analyses.
 Both "ancient" and "modern" versions of the scores (generated from the json)
 are provided here.
@@ -16,13 +16,13 @@ More details follow below.
 ## External, Original Source, 1564
 
 Claude Goudimel's contribution (1564) is to add harmonies
-to an existing "Genevan Psalter".
-The melody-only version dates from 1539.
-The text is a "metrical" French version of the psalm texts
-by Clément Marot and Théodore de Bèze (1519-1605).
+to an existing, melody-only "Genevan Psalter" which dates back further still:
+The first source dates from 1539, containing a selection of psalms.
+The text in all cases is a "metrical" French version of the psalm.
+Goudimel's setting is based on "metrical" French text by Clément Marot and Théodore de Bèze.
 
-The source for this transcription of the Goudimel is the earliest available on IMSLP:
-[the 2nd edition, of 1564, here](https://imslp.org/wiki/150_Pseaumes_de_David,_1564_(Goudimel,_Claude))
+The source for this transcription of the Goudimel:
+[is the earliest available on IMSLP from 1564 (click here)](https://imslp.org/wiki/150_Pseaumes_de_David,_1564_(Goudimel,_Claude))
 This leads to two files for the:
 - [first half here (1-68)](https://s9.imslp.org/files/imglnks/usimg/f/f2/IMSLP498673-PMLP572700-Les_Pseaumes_mis_en_rime_1565_Goudimel_Claude_btv1b525015926_1-68.pdf)
 - [second half here (69-150)](https://ks15.imslp.org/files/imglnks/usimg/1/1f/IMSLP498674-PMLP572700-Les_Pseaumes_mis_en_rime_1565_Goudimel_Claude_btv1b525015926_69-150.pdf)
@@ -61,17 +61,18 @@ This contains the following keys for _all_ 150:
 - `title`: `str`. Original French titles (note the old language and spelling) that sets the file's alphabetical order.
 - `orig_bass`: `str`. The pitch name with octave (e.g, "C4" - not to be confused with the clefs) of the first note in the original bass part.
 - `orig_key`: `bool`. The original key signature expressed as a bool: there is either no key signature or one of a single flat.
-- `clefs`: `list`. The four original clefs, specifying the `sign` and `line` in order (from superius to basses). E.g., ["G2", "C3", "C3", "F4"].
+- `clefs`: `list`. The four original clefs, specifying the `sign` and `line` in order (from low to high). E.g., ["G2", "C3", "C3", "F4"].
 - `psalm_number`: `int`. A number in the range 1--150.
 - `latin_title`: `str`. A corresponding Latin name for the psalm.
 This is potentially useful for cross-referencing
 (for which see also [`titles.py`](./titles.py) module
-which includes a mapping between the numbering schemes).
+which includes a mapping between the numbering schemes
+and [`psalms_texts.tsv`](./psalms_texts.tsv) file with both numbering schemes and an English translation).
 
-Additionally, for the 41 transcribed so far, there is the following:
+Additionally, for those with full transcription, there is the following:
 - string (text) representations of the original parts in music21's tinyNotation.
   - The key is given by the part name: `superius`, `contra`, `tenor`, `bassus`.
-  - The values are tiny notation for the music of that part.
+  - The values are expressed in music21's `tinyNotation` for the music of that part. 
   - This covers all relevant data except the following which we also provide on the json:
 - `mod_trans`: `int`. The number of semitones and direction (+/-) for transposing from the original to the modern key choice.
 - `mod_sharps`: `int`. The key signature for the modern version, expressed as a number of sharps.
@@ -90,17 +91,17 @@ From the json data, the code renders scores in both "original" and "modern" vers
 - transposition level
 
 The original is almost entirely expressed in the json, with the exception of elements unsupported by tiny notation:
-- Final notes are usual double the length.
+- Final notes are usually double the length.
   - Here we add a fermata.
   - Alternatives include doubling the length on rendering.
-- This range of clefs is not supported. They are added from data in the json.
+- This range of clefs is not supported in tiny notation. They are added from data in the json.
 - Time signature symbol. Tiny notation supports the concept of `2/2` but the symbol is added later.
 
 "Modern" means
 - still open score (though with a script provided to adapt to short score)
 - modern part names: SATB
 - modern clefs: treble, treble, treble8, bass
-- tenor cantus firmus moved to the top 
+- tenor cantus firmus moved to the top-most part (now named "S")
 - halved note values
 - transposed to keys match up with the harmonic analyses on [When in Rome](https://github.com/MarkGotham/When-in-Rome/tree/master/Corpus/Early_Choral/Goudimel%2C_Claude/Psalmes)
 
@@ -132,15 +133,15 @@ ausi le Mecredi jour
 des prieres.
 
 ON CHANTE LES COM-
-mandemens de Dieu (Leue le cœur, ouvre
-l'aureille, Exode 20.) apres le sermo,le iour 
-qu'on celebre la saincte Cene de noftre Sau-
+mandemens de Dieu (Leve le cœur, ouvre
+l'aureille, Exode 20.) apres le sermon, le jour 
+qu'on celebre la sainte Cene de nostre Sau-
 veur Iesus Christ: laquelle on celebre qua-
-tre fois l'an: Affauoir, A Pafque, A la Pente-
-coste, Au premier Dimanche de Septembre,
+tre fois l'an: [á] savoir, A P[â]que[s], A la Pente-
+c[ô]te, Au premier Dimanche de Septembre,
 & au plus prochain Dimanche de la Nati-
-vité de notre Seigneur Iesus.
-On chante en l'action de graces
+vité de notre Seigneur Iesus. On
+chante en l'action de graces
 le cantique de Simeon,
 Or laisses, Crea-
 teur. Luc
@@ -148,11 +149,11 @@ teur. Luc
 ```
 
 
-## Text
+## Text(s)
 
 Each score sets out the music for one strophe of text
 (most psalms consist of many strophes, repeating the music).
-This repo likewise provides one strope of text for each transcribed score.
+This repo likewise provides one strophe of text for each transcribed score.
 Two cases (psalms 1 and 3) have full text as proof of concept for testing the syllabic division across verses.
 
 Line divisions are determined by the text (punctuation break and/or capitalisation)
@@ -167,6 +168,10 @@ except for standard (minimal) adjustments, such as:
 - Modernised spelling ("Loy" -> "Loi", "Roy" -> "Roi")
 - Abbreviations ("&" -> "et")
 
+For comparison, this repo also includes:
+- `titles.py` with scripts for mapping between different numbering systems for Psalms, Latin titles, and more.
+- `psalms_texts.tsv` file with an English language version of the psalms (KJV) and both major numbering systems in full.
+
 Various sources are other versions of the Psalm texts.
 These include WikiSource's provision of:
 - [A more modern French translation (1910)](https://fr.wikisource.org/wiki/Bible_Segond_1910/Livre_des_Psaumes)
@@ -180,13 +185,13 @@ The code here serves to:
 - `write_to_tiny`: extract a tiny notation version from a score.
 - `corpus_conversion`: use musescore to convert between any supported formats
 - `clef_tree`: produce a summary of clefs used and their counts as described below.
-- `titles`: script for making sense of the two main numbering systems.
+- `titles`: navigating two main numbering systems, Latin titles, the `psalms_texts.tsv` file, and more.
 
 ## Clefs
 
 This shows the:
 - choice of two clefs per part for S, C, and T, and 3 for B.
-- Very uneven use of these combinations, for instance with C1,C3,C4,F4 used 88 time as compared with C1,C3,C4,F3 just once.
+- Very uneven use of these combinations. For instance, C1,C3,C4,F4 is used 88 times; while C1,C3,C4,F3 appears once.
 
 ```
 ├── superius:C1
@@ -214,6 +219,11 @@ This shows the:
         └── tenor:C4 = G2,C3,C4
             └── bassus:F4 = G2,C3,C4,F4 = 1
 ```
+
+## Licence
+
+Rendered scores (musicXML etc.) are CC0.
+All code and other resources on this repo are MIT.
 
 
 ## Other file formats
