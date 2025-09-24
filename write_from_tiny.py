@@ -3,6 +3,9 @@
 Write from Tiny (`write_from_tiny.py`)
 write scores in musicXML from the
 tiny notation and associated metadata in the central json doc.
+
+Author: Mark Gotham
+Licence: MIT
 """
 
 __author__ = "Mark Gotham"

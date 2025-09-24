@@ -5,6 +5,8 @@ is a quick demonstration to show the choices of clefs
 as encoded in the main `./goudimel.json` file
 organised into a tree format.
 
+Author: Mark Gotham
+Licence: MIT
 """
 
 __author__ = "Mark Gotham"
