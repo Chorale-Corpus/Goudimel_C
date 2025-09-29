@@ -46,6 +46,12 @@
             "scheme": "url",
             "identifier": "https://github.com/Chorale-Corpus/Goudimel_C/tree/v2.1",
             "relation": "references"
+        },
+        {
+            "scheme": "doi",
+            "identifier": "10.5281/zenodo.17229783",
+            "relation": "isPartOf",
+            "resource_type":"dataset"
         }
     ]
 }
