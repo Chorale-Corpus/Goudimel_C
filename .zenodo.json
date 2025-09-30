@@ -2,20 +2,11 @@
     "license": "CC-BY-NC-SA-4.0",
     "contributors": [
         {
-            "name": "Belle, Anna",
-            "type": "Annotator",
-            "orcid": "0000-0000-0000-0000"
-        },
-        {
-            "name": "Daraud, Christine",
+            "orcid": "0000-0003-0722-3074",
             "type": "DataCurator",
-            "orcid": "0000-0000-0000-0000"
-        },
-        {
-            "name": "Fuhrmann, Erna",
-            "type": "DataCollector",
-            "orcid": "0000-0000-0000-0000"
-        }
+            "affiliation": "King's College London",
+            "name": "Gotham, Mark"
+        }        
     ],
     "title": "Goudimel, Claude – The Geneva Psalter (A chorale corpus)",
     "keywords": [
