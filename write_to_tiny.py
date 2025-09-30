@@ -1,14 +1,44 @@
 # -*- coding: utf-8 -*-
+
+# -*- coding: utf-8 -*-
 """
+NAME
+===============================
 Write to Tiny (`write_to_tiny.py`).
-Although this repo works by
-storing the VoR in JSON as strings and
-creating scores in mxl format from there,
-often it's easier to
-create some version of the scores in a music notation editor first and
-extract at least an initial version of the string representation from there.
-These initial scores can be then discarded.
-This module helps with that process by writing from score to tiny notation strings.
+
+
+BY
+===============================
+Mark Gotham
+
+
+LICENCE:
+===============================
+Code = MIT
+
+
+ABOUT:
+===============================
+This module takes any score parsed and represented in music21
+(which can come from several different formats)
+and writes to the music21's 'tinyNotation':
+a string representation of sheet music limited to basic elements (notes, rests, ...).
+
+This module is needed because
+music21 uses `tinyNotation` as input only:
+there is no write-to-tiny functionality there.
+The module is useful because often it's easiest to create some version of a score in a music notation editor first,
+but then also to have a very basic, lightweight representation suitable for version control and more.
+
+Tiny notation is deliberately limited in scope (otherwise it wouldn't be tiny!)
+and we further limit the scope here (in the `Chorale-corpus`) to cases relevant to our purposes (chorales).
+
+For instance, we are limited to:
+- one tiny-notation string per part
+- one time signature per score (set at the beginning)
+
+For extensions and workarounds, see uses in the individual corpora.
+
 """
 
 from __future__ import annotations
