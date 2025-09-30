@@ -1,29 +1,45 @@
+# -*- coding: utf-8 -*-
 """
-Basic script for retrieving syllables from syllabified text.
+NAME
+===============================
+Syllables (`syllables.py`)
+
+
+BY
+===============================
+Mark Gotham
+
+
+LICENCE:
+===============================
+MIT
+
+
+ABOUT:
+===============================
+Basic script for retrieving syllables from syllabified text (.txt) and related sources,
+as relevant to this meta-corpus (e.g., tinyNotation).
 """
 
 
-import os
+from pathlib import Path
 import re
 
 
 __author__ = "Mark Gotham"
 
 
-def text_to_syllables_lines(psalm_number: int = 1) -> list:
+
+def text_to_syllables_lines(
+    txt_path: Path
+) -> list:
     """
     Take any text file and split up each line
-    by spaces and hypens
+    by spaces and hyphens
     to reveal the number of syllables.
-    Separate the values into lists of lists by verse.
-
-    >>> text_to_syllables_lines(1)
-    [[10, 10, 11, 11, 10, 10], [10, 10, 11, 10, 10, 10], [10, 10, 10, 10, 10, 10]]
-
+    Separate the values into lists of lists by verse and return that
+    numerical list of lists.
     """
-    num_padded = str(psalm_number).zfill(3)
-    txt_path = os.path.join(".", "Pseaumes", num_padded, f"Goudimel_{num_padded}.txt")
-
     all_verses = []
     this_verse = []
     with open(txt_path) as file:
@@ -37,6 +53,20 @@ def text_to_syllables_lines(psalm_number: int = 1) -> list:
                 this_verse = []
 
     return all_verses
+
+
+def text_to_syllables_Goudimel(
+    psalm_number: int
+) -> list:
+    """
+    A wrapper for Goudimel-specific cases.
+
+    >>> text_to_syllables_lines(1)
+    [[10, 10, 11, 11, 10, 10], [10, 10, 11, 10, 10, 10], [10, 10, 10, 10, 10, 10]]
+    """
+    num_padded = str(psalm_number).zfill(3)
+    txt_path = Path(".") / "Pseaumes" / num_padded / f"Goudimel_{num_padded}.txt"
+    return text_to_syllables_lines(txt_path)
 
 
 if __name__ == '__main__':
