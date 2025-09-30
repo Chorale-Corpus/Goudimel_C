@@ -13,7 +13,8 @@ __author__ = "Mark Gotham"
 
 import json
 from music21 import clef, converter, expressions, key, metadata, meter, note, stream
-import os
+from pathlib import Path
+from typing import Optional
 
 
 orig_part_list = ["superius", "contra", "tenor", "bassus"]
@@ -56,7 +57,7 @@ def write_orig_from_tiny(data: dict):
     s = stream.Score()
     for i in range(4):
         name = orig_part_list[i]
-        p = converter.parse(data[name])
+        p = converter.parse("tinyNotation: 2/2 " +  data[name])
         p.partName = name
 
         # Clef
@@ -101,7 +102,7 @@ def write_modern_from_tiny(data: dict):
             t += 12
         elif modern_name == "T":
             p.insert(clef.Treble8vbClef())  # the others work it out by themselves ;)
-        for n in converter.parse(data[orig_name]).recurse().notesAndRests:
+        for n in converter.parse("tinyNotation: 2/2 " + data[orig_name]).recurse().notesAndRests:
             if n.isRest:
                 new_note = note.Rest()
             else:
@@ -120,7 +121,9 @@ def write_modern_from_tiny(data: dict):
 def metadata_and_finish(
         s: stream.Score,
         data: dict,
-        original: bool = True
+        original: bool = True,
+        format: str = ".mxl",
+        out_base_path: Optional[Path] = None
 ) -> None:
     psalm_number = str(data["psalm_number"])
     s.insert(0, metadata.Metadata())
@@ -128,12 +131,17 @@ def metadata_and_finish(
     s.metadata.composer = 'Claude Goudimel'
 
     psalm_number = psalm_number.zfill(3)
-    out_path = os.path.join('.', 'Pseaumes', psalm_number, f"Goudimel_{psalm_number}")
+
+    if out_base_path is None:
+        out_base_path = Path('.', 'Pseaumes')
+    out_path = out_base_path / psalm_number
+
     if original:
-        out_path += "_original.mxl"
+        when = "original"
     else:
-        out_path += "_modern.mxl"
-    s.write("mxl", out_path)
+        when = "modern"
+
+    s.write(format, out_path / f"Goudimel_{psalm_number}_{when}{format}")
 
 
 if __name__ == '__main__':
