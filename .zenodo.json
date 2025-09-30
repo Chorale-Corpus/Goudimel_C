@@ -1,0 +1,48 @@
+{
+    "license": "CC-BY-NC-SA-4.0",
+    "contributors": [
+        {
+            "orcid": "0000-0003-0722-3074",
+            "type": "DataCurator",
+            "affiliation": "King's College London",
+            "name": "Gotham, Mark"
+        }        
+    ],
+    "title": "Goudimel, Claude – The Geneva Psalter (A chorale corpus)",
+    "keywords": [
+        "music research",
+        "music theory",
+        "music analysis",
+        "music history",
+        "corpus studies",
+        "corpora",
+        "multimodal dataset",
+        "symbolic dataset",
+        "scores",
+        "chorales"
+    ],
+    "upload_type": "dataset",
+    "version": "v2.1",
+    "publication_date": "2025-09-30",
+    "creators": [
+        {
+            "orcid": "0000-0003-0722-3074",
+            "affiliation": "King's College London",
+            "name": "Gotham, Mark"
+        }
+    ],
+    "access_right": "open",
+    "related_identifiers": [
+        {
+            "scheme": "url",
+            "identifier": "https://github.com/Chorale-Corpus/Goudimel_C/tree/v2.1",
+            "relation": "references"
+        },
+        {
+            "scheme": "doi",
+            "identifier": "10.5281/zenodo.17229783",
+            "relation": "isPartOf",
+            "resource_type":"dataset"
+        }
+    ]
+}
